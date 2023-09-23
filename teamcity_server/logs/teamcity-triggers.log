@@ -1,4 +1,0 @@
-[2023-09-23 09:55:49,706]   INFO - uildServer.TRIGGERS.vcsTrigger - TeamCityExperiment_Build: Initializing the VCS trigger state for 1 branches
-[2023-09-23 09:55:49,750]   INFO - uildServer.TRIGGERS.vcsTrigger - TeamCityExperiment_Build: Trigger state changed: lastTriggeredBy-<default>: -1:117740 was: null, lastProcessedModId-<default>: -1 was: null
-[2023-09-23 09:55:50,196]   INFO - uildServer.TRIGGERS.vcsTrigger - TeamCityExperiment_Build: Initializing the VCS trigger state for 1 branches
-[2023-09-23 09:59:12,133]   INFO - uildServer.TRIGGERS.vcsTrigger - TeamCityExperiment_Build: [<default>] Trigger state changed: lastProcessedModId-<default>: 1-1 was: -1

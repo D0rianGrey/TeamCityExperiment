@@ -1,5 +1,0 @@
-[2023-09-23 09:52:06,540]   WARN [:24.410), node id: MAIN_SERVER] - de.build.index.BuildPTRIndexer [] - Indexer initialization started null
-[2023-09-23 09:52:06,572]   WARN [:24.410), node id: MAIN_SERVER] - de.build.index.BuildPTRIndexer [] - Starting to sync Optional[jetbrains.buildServer.serverSide.metadata.impl.indexer.BuildMetadataIndex@562de42d]
-[2023-09-23 09:52:06,638]   WARN [:24.410), node id: MAIN_SERVER] - de.build.index.BuildPTRIndexer [] - Indexer initialization started null
-[2023-09-23 09:52:07,817]   WARN [:24.410), node id: MAIN_SERVER] - de.build.index.BuildPTRIndexer [] - Starting to sync Optional[jetbrains.buildServer.serverSide.search.lucene.LuceneBuildIndex@55b77477]
-[2023-09-23 09:52:07,822]   WARN [:24.410), node id: MAIN_SERVER] - de.build.index.BuildPTRIndexer [] - Indexer initialization started null
