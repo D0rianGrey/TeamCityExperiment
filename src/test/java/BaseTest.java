@@ -18,16 +18,12 @@ public class BaseTest {
 
         Environment environment = Environment.getEnumFromString(propertiesConfigurator.getFinalProperties().getProperty("env"));
 
-//        var baseUrl = Configuration.baseUrl = propertiesConfigurator.getFinalProperties().getProperty("url");
-
         switch (environment) {
             case LOCAL_CHROME -> {
                 Configuration.browser = "chrome";
-//                Configuration.baseUrl = baseUrl;
             }
             case LOCAL_FIREFOX -> {
                 Configuration.browser = "firefox";
-//                Configuration.baseUrl = baseUrl;
             }
             case CLOUD_CHROME -> {
                 ChromeOptions chromeOptions = new ChromeOptions();

@@ -9,8 +9,8 @@ public class GoogleTests extends BaseTest {
         var url = propertiesConfigurator.getFinalProperties().getProperty("url");
         var env = propertiesConfigurator.getFinalProperties().getProperty("env");
 
-        System.out.println(url);
-        System.out.println(env);
+        System.out.println("Url :: " + url);
+        System.out.println("Env :: " + env);
 
         open(url);
 
