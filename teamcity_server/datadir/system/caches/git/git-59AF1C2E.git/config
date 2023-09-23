@@ -1,0 +1,14 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = true
+	logallrefupdates = false
+[teamcity]
+	remote = https://D0rianGrey@github.com/D0rianGrey/TeamCityExperiment
+[remote "origin"]
+	url = https://D0rianGrey@github.com/D0rianGrey/TeamCityExperiment
+	fetch = +refs/*:refs/*
+[gc]
+	auto = -1
+[transfer]
+	unpackLimit = 1

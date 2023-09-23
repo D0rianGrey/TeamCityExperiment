@@ -1,8 +1,7 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.codeborne.selenide.Configuration;
 import org.testng.annotations.Test;
 
+import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.Selenide.open;
 
 public class GoogleTests {
@@ -11,6 +10,7 @@ public class GoogleTests {
     void testGoogle() {
 ////        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "src/main/java/org/example/drivers/chromedriver");
 ////        WebDriverManager.chromedriver().s
+        Configuration.browser = CHROME;
         open("https://www.google.com/");
 ////
 //        WebDriver driver = new ChromeDriver();

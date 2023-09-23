@@ -1,0 +1,101 @@
+23-Sep-2023 09:38:57.040 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.75
+23-Sep-2023 09:38:57.043 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          May 4 2023 13:04:05 UTC
+23-Sep-2023 09:38:57.043 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.75.0
+23-Sep-2023 09:38:57.044 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+23-Sep-2023 09:38:57.044 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            5.15.49-linuxkit-pr
+23-Sep-2023 09:38:57.044 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
+23-Sep-2023 09:38:57.044 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /opt/java/openjdk
+23-Sep-2023 09:38:57.044 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           17.0.7+7-LTS
+23-Sep-2023 09:38:57.044 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Amazon.com Inc.
+23-Sep-2023 09:38:57.044 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /opt/teamcity
+23-Sep-2023 09:38:57.044 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /opt/teamcity
+23-Sep-2023 09:38:57.055 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED
+23-Sep-2023 09:38:57.055 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+IgnoreUnrecognizedVMOptions
+23-Sep-2023 09:38:57.056 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+23-Sep-2023 09:38:57.056 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+23-Sep-2023 09:38:57.056 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+23-Sep-2023 09:38:57.056 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+23-Sep-2023 09:38:57.056 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+23-Sep-2023 09:38:57.056 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/opt/teamcity/conf/logging.properties
+23-Sep-2023 09:38:57.056 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+23-Sep-2023 09:38:57.056 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xmx2g
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:ReservedCodeCacheSize=640m
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dteamcity.configuration.path=../conf/teamcity-startup.properties
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dlog4j2.configurationFile=file:/opt/teamcity/bin/../conf/teamcity-server-log4j.xml
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dteamcity_logs=/opt/teamcity/bin/../logs
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.awt.headless=true
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/opt/teamcity
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/opt/teamcity
+23-Sep-2023 09:38:57.057 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/opt/teamcity/temp
+23-Sep-2023 09:38:57.059 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
+23-Sep-2023 09:38:57.254 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8111"]
+23-Sep-2023 09:38:57.278 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [365] milliseconds
+23-Sep-2023 09:38:57.311 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+23-Sep-2023 09:38:57.311 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.75]
+23-Sep-2023 09:38:57.315 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/opt/teamcity/webapps/ROOT]
+23-Sep-2023 09:39:01.943 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/opt/teamcity/webapps/ROOT] has finished in [4,628] ms
+23-Sep-2023 09:39:01.945 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8111"]
+23-Sep-2023 09:39:01.965 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [4687] milliseconds
+23-Sep-2023 09:44:59.665 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+23-Sep-2023 09:44:59.667 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8111"]
+23-Sep-2023 09:44:59.676 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+23-Sep-2023 09:44:59.740 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [ROOT] appears to have started a thread named [Change Observer 1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.7/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.7/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.7/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.7/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.7/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.7/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.7/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.7/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.7/java.lang.Thread.run(Thread.java:833)
+23-Sep-2023 09:44:59.746 SEVERE [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalMapForLeaks The web application [ROOT] created a ThreadLocal with key of type [jetbrains.buildServer.util.ThreadStat$1] (value [jetbrains.buildServer.util.ThreadStat$1@33e5ffc6]) and a value of type [jetbrains.buildServer.util.NoOpTraceState] (value [jetbrains.buildServer.util.NoOpTraceState@4012652a]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+23-Sep-2023 09:44:59.747 SEVERE [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalMapForLeaks The web application [ROOT] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@5d80ad22]) and a value of type [jetbrains.buildServer.util.NamedThreadFactory$1] (value [jetbrains.buildServer.util.NamedThreadFactory$1@1ef7bafe]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+23-Sep-2023 09:44:59.780 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8111"]
+23-Sep-2023 09:44:59.790 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8111"]
+23-Sep-2023 09:50:19.672 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.75
+23-Sep-2023 09:50:19.676 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          May 4 2023 13:04:05 UTC
+23-Sep-2023 09:50:19.676 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.75.0
+23-Sep-2023 09:50:19.676 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+23-Sep-2023 09:50:19.676 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            5.15.49-linuxkit-pr
+23-Sep-2023 09:50:19.677 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          aarch64
+23-Sep-2023 09:50:19.677 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /opt/java/openjdk
+23-Sep-2023 09:50:19.677 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           17.0.7+7-LTS
+23-Sep-2023 09:50:19.677 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Amazon.com Inc.
+23-Sep-2023 09:50:19.677 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /opt/teamcity
+23-Sep-2023 09:50:19.677 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /opt/teamcity
+23-Sep-2023 09:50:19.691 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED
+23-Sep-2023 09:50:19.691 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+IgnoreUnrecognizedVMOptions
+23-Sep-2023 09:50:19.691 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+23-Sep-2023 09:50:19.691 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+23-Sep-2023 09:50:19.691 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/opt/teamcity/conf/logging.properties
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xmx2g
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:ReservedCodeCacheSize=640m
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dteamcity.configuration.path=../conf/teamcity-startup.properties
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dlog4j2.configurationFile=file:/opt/teamcity/bin/../conf/teamcity-server-log4j.xml
+23-Sep-2023 09:50:19.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dteamcity_logs=/opt/teamcity/bin/../logs
+23-Sep-2023 09:50:19.693 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.awt.headless=true
+23-Sep-2023 09:50:19.693 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+23-Sep-2023 09:50:19.693 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/opt/teamcity
+23-Sep-2023 09:50:19.693 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/opt/teamcity
+23-Sep-2023 09:50:19.693 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/opt/teamcity/temp
+23-Sep-2023 09:50:19.694 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
+23-Sep-2023 09:50:19.896 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8111"]
+23-Sep-2023 09:50:19.922 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [415] milliseconds
+23-Sep-2023 09:50:19.947 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+23-Sep-2023 09:50:19.948 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.75]
+23-Sep-2023 09:50:19.954 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/opt/teamcity/webapps/ROOT]
+23-Sep-2023 09:50:24.542 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/opt/teamcity/webapps/ROOT] has finished in [4,588] ms
+23-Sep-2023 09:50:24.559 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8111"]
+23-Sep-2023 09:50:24.611 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [4688] milliseconds
