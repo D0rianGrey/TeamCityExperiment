@@ -1,0 +1,31 @@
+version: '3'
+services:
+  teamcity-server:
+    image: jetbrains/teamcity-server:latest
+    ports:
+      - "8111:8111"
+    volumes:
+      - ./teamcity_server/datadir:/data/teamcity_server/datadir
+      - ./teamcity_server/logs:/opt/teamcity/logs
+    networks:
+      - my_test_network
+
+  teamcity-agent:
+    image: jetbrains/teamcity-agent:latest
+    environment:
+      - SERVER_URL=http://teamcity-server:8111
+    volumes:
+      - ./teamcity_agent/conf:/data/teamcity_agent/conf
+    networks:
+      - my_test_network
+
+  chromedriver:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
+    networks:
+      - my_test_network
+
+networks:
+  my_test_network:
+    driver: bridge

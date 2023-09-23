@@ -36,3 +36,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/teamcity_agent/
+/teamcity_server/

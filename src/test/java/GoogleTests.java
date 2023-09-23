@@ -9,11 +9,12 @@ public class GoogleTests {
 
     @Test
     void testGoogle() {
-//        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "src/main/java/org/example/drivers/chromedriver");
-//        WebDriverManager.chromedriver().driverVersion("114");
-//        open("https://www.google.com/");
-
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://www.google.com/");
+////        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "src/main/java/org/example/drivers/chromedriver");
+////        WebDriverManager.chromedriver().s
+        open("https://www.google.com/");
+////
+//        WebDriver driver = new ChromeDriver();
+//        driver.get("https://www.google.com/");
+//        driver.quit();
     }
 }
