@@ -40,3 +40,5 @@ build/
 /teamcity_server/
 /.fastRequest/
 /.idea/
+/postgres_data/
+/mysql_data/

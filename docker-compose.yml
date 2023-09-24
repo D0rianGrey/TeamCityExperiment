@@ -3,7 +3,7 @@ services:
   teamcity-server:
     image: jetbrains/teamcity-server:latest
     ports:
-      - "8111:8111"
+      - "9999:8111"
     volumes:
       - ./teamcity_server/datadir:/data/teamcity_server/datadir
       - ./teamcity_server/logs:/opt/teamcity/logs
@@ -13,7 +13,7 @@ services:
   teamcity-agent:
     image: jetbrains/teamcity-agent:latest
     environment:
-      - SERVER_URL=http://teamcity-server:8111
+      - SERVER_URL=http://teamcity-server:9999
     volumes:
       - ./teamcity_agent/conf:/data/teamcity_agent/conf
     networks:
@@ -25,6 +25,20 @@ services:
       - "4444:4444"
     networks:
       - my_test_network
+
+#  mysql:
+#    image: mysql:latest
+#    environment:
+#      MYSQL_ROOT_PASSWORD: rootpassword
+#      MYSQL_DATABASE: teamcitydb
+#      MYSQL_USER: teamcityuser
+#      MYSQL_PASSWORD: teamcitypassword
+#    volumes:
+#      - ./mysql_data:/var/lib/mysql
+#    ports:
+#      - "3306:3306"
+#    networks:
+#      - my_test_network
 
 networks:
   my_test_network:
