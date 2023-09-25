@@ -1,6 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
-import jetbrains.buildServer.configs.kotlin.buildSteps.exec
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.projectFeatures.buildReportTab
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
@@ -24,12 +23,12 @@ object Build : BuildType({
 
     // Define common paths as parameters
     params {
-        param("allureResultsPath", "%teamcity.build.checkoutDir%/allure-results")
-        param("allureReportPath", "%teamcity.build.checkoutDir%/allure-report")
+//        param("allureResultsPath", "%teamcity.build.checkoutDir%/allure-results")
+//        param("allureReportPath", "%teamcity.build.checkoutDir%/allure-report")
         param("env", "cloud_chrome")
         param("url", "https://www.google.com.ua/")
-        param("teamcity.artifacts.prepublishingCommands", "move /Y %allureReportPath% allure-report")
-        param("artifacts", "%allureReportPath% => allure-report.zip")
+//        param("teamcity.artifacts.prepublishingCommands", "move /Y %allureReportPath% allure-report")
+//        param("artifacts", "%allureReportPath% => allure-report.zip")
     }
 
     vcs {
@@ -43,11 +42,18 @@ object Build : BuildType({
             runnerArgs = "-Dmaven.test.failure.ignore=true"
         }
 
-        // Use the parameterized paths
-        exec {
-            name = "Generate Allure Report"
-            path = "allure"
-            arguments = "generate %allureResultsPath% -o %allureReportPath%"
+//        // Use the parameterized paths
+//        exec {
+//            name = "Generate Allure Report"
+//            path = "allure"
+//            arguments = "generate %allureResultsPath% -o %allureReportPath%"
+//        }
+        step {
+            name = "Generate test report"
+            type = "allureReportGeneratorRunner"
+            param("allure.result.directory", "allure-results")
+            param("allure.report.path.prefix", "allure-report")
+            executionMode = BuildStep.ExecutionMode.ALWAYS
         }
     }
 
