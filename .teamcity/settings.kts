@@ -20,7 +20,7 @@ project {
 
         buildReportTab {
             title = "Test Results"
-            startPage = "allure-report.zip!index.html"
+            startPage = "allure-report/index.html" // Point to unzipped directory
         }
     }
 }
@@ -40,7 +40,6 @@ object Build : BuildType({
     }
 
     steps {
-
         maven {
             name = "Test with creation allure-results"
             goals = "clean test -Denv=%env% -Durl=%url%"
@@ -54,8 +53,17 @@ object Build : BuildType({
     }
 
     artifactRules = """
-    +:allure-report => allure-report.zip
-"""
+        +:allure-report => allure-report
+        +:allure-report/history => allure-report/history
+    """
+
+    dependencies {
+        artifacts(Build) {
+            artifactRules = """
+                allure-report/history => allure-results/history
+            """
+        }
+    }
 
     triggers {
         vcs { }
