@@ -1,7 +1,6 @@
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
-import jetbrains.buildServer.configs.kotlin.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 version = "2023.05"
@@ -42,26 +41,32 @@ object Build : BuildType({
     steps {
 
         maven {
-            name = "Test"
+            name = "Test with creation allure-results"
             goals = "clean test -Denv=%env% -Durl=%url%"
             runnerArgs = "-Dmaven.test.failure.ignore=true"
         }
 
-        script {
-            scriptContent = """
-                #!/bin/bash
-                wget https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.tgz
-                tar -zxvf allure-2.13.8.tgz -C /opt/
-                export PATH=$PATH:/opt/allure-2.13.8/bin
-            """
+        maven {
+            name = "Generate Allure Report from allure-results"
+            goals = "mvn allure:serve"
         }
+//
+//        script {
+//            name = "Install allure command line"
+//            scriptContent = """
+//                #!/bin/bash
+//                wget https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.tgz
+//                tar -zxvf allure-2.13.8.tgz -C /opt/
+//                export PATH=$PATH:/opt/allure-2.13.8/bin
+//            """
+//        }
 
-        script {
-            scriptContent = """
-                #!/bin/bash
-                allure generate ./allure-results --clean -o ./allure-report
-            """
-        }
+//        script {
+//            scriptContent = """
+//                #!/bin/bash
+//                allure generate ./allure-results --clean -o ./allure-report
+//            """
+//        }
     }
 
     artifactRules = """
