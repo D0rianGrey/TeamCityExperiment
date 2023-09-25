@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.projectFeatures.buildReportTab
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 version = "2023.05"
@@ -43,11 +44,11 @@ project {
             param("allureResultsPattern", "allure-results/**")
         }
 
-        feature {
+        buildReportTab {
             id = "PROJECT_EXT_52"
-            type = "ReportTab"
-            param("startPage", "allure-report/index.html")
-            param("title", "Allure Report")
+            title = "Test Results"
+//            startPage = "allure-report.zip!/allure-report/index.html"
+            startPage = "allure-report/index.html"
         }
     }
 }
