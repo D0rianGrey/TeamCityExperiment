@@ -10,11 +10,28 @@ project {
     buildType(Build)
 //
 //    features {
+//        feature {
+//            id = "1"
+//            type = "ReportTab"
+//            param("startPage", "allure-report/index.html")
+//            param("title", "Allure Report")
+//        }
+//    }
+
+
+//
+//    features {
 //        buildReportTab {
 //            id = "PROJECT_EXT_52"
 //            title = "Test Results"
 ////            startPage = "allure-report.zip!/allure-report/index.html"
 //            startPage = "./allure-report/index.html"
+//        }
+    //        feature {
+//            id = "1"
+//            type = "ReportTab"
+//            param("startPage", "allure-report/index.html")
+//            param("title", "Allure Report")
 //        }
 //    }
 
@@ -24,6 +41,13 @@ project {
             param("allureRunnerMode", "runner")
             param("allureReportGenerate", "true")
             param("allureResultsPattern", "allure-results/**")
+        }
+
+        feature {
+            id = "1"
+            type = "ReportTab"
+            param("startPage", "allure-report/index.html")
+            param("title", "Allure Report")
         }
     }
 }
@@ -64,14 +88,14 @@ object Build : BuildType({
     +:allure-report => .
 """
 
-    features {
-        feature {
-            id = "1"
-            type = "ReportTab"
-            param("startPage", "allure-report/index.html")
-            param("title", "Allure Report")
-        }
-    }
+//    features {
+//        feature {
+//            id = "1"
+//            type = "ReportTab"
+//            param("startPage", "allure-report/index.html")
+//            param("title", "Allure Report")
+//        }
+//    }
 
     triggers {
         vcs { }
