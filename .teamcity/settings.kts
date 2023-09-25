@@ -11,7 +11,7 @@ project {
 
     features {
         buildReportTab {
-//            id = "PROJECT_EXT_52"
+            id = "PROJECT_EXT_52"
             title = "Test Results"
 //            startPage = "allure-report.zip!/allure-report/index.html"
             startPage = "allure-report/index.html"
