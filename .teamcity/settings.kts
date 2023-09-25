@@ -50,6 +50,15 @@ object Build : BuildType({
         script {
             scriptContent = """
                 #!/bin/bash
+                wget https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.tgz
+                tar -zxvf allure-2.13.8.tgz -C /opt/
+                export PATH=$PATH:/opt/allure-2.13.8/bin
+            """
+        }
+
+        script {
+            scriptContent = """
+                #!/bin/bash
                 allure generate ./allure-results --clean -o ./allure-report
             """
         }
