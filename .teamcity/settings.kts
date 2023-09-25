@@ -20,7 +20,7 @@ project {
 
         buildReportTab {
             title = "Test Results"
-            startPage = "allure-report/index.html" // Point to unzipped directory
+            startPage = "allure-report/index.html"
         }
     }
 }
@@ -60,7 +60,7 @@ object Build : BuildType({
     dependencies {
         artifacts(Build) {
             artifactRules = """
-                allure-report/history => allure-results/history
+                allure-report/history/* => allure-results/history
             """
         }
     }
