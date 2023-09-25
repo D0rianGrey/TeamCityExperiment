@@ -20,8 +20,7 @@ project {
 
         buildReportTab {
             title = "Test Results"
-//            startPage = "allure-report.zip!/allure-report/index.html"
-            startPage = "allure-report/index.html"
+            startPage = "allure-report.zip!index.html"
         }
     }
 }
@@ -54,12 +53,8 @@ object Build : BuildType({
         }
     }
 
-//    artifactRules = """
-//    +:allure-report => allure-report.zip
-//"""
-
     artifactRules = """
-    +:allure-report => .
+    +:allure-report => allure-report.zip
 """
 
     triggers {
