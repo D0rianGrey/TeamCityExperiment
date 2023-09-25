@@ -57,13 +57,13 @@ object Build : BuildType({
         +:allure-report/history => allure-report/history
     """
 
-    dependencies {
-        artifacts(Build) {
-            artifactRules = """
-                allure-report/history/* => allure-results/history
-            """
-        }
-    }
+//    dependencies {
+//        artifacts(Build) {
+//            artifactRules = """
+//                allure-report/history/* => allure-results/history
+//            """
+//        }
+//    }
 
     triggers {
         vcs { }
