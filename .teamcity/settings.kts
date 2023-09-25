@@ -44,6 +44,7 @@ project {
         }
 
         feature {
+            id = "PROJECT_EXT_52"
             type = "ReportTab"
             param("startPage", "allure-report/index.html")
             param("title", "Allure Report")
