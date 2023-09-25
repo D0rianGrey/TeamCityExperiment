@@ -13,7 +13,7 @@ project {
         buildReportTab {
             id = "PROJECT_EXT_52"
             title = "Test Results"
-            startPage = "allure-report-for-tab.zip!/allure-report-for-tab/index.html"
+            startPage = "allure-report.zip!/allure-report/index.html"
         }
     }
 
@@ -56,7 +56,7 @@ object Build : BuildType({
     }
 
     artifactRules = """
-        +:allure-report => allure-report-for-tab.zip
+        +:allure-report => allure-report.zip
     """
 
     triggers {
