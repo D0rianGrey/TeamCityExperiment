@@ -44,7 +44,6 @@ project {
         }
 
         feature {
-            id = "1"
             type = "ReportTab"
             param("startPage", "allure-report/index.html")
             param("title", "Allure Report")
