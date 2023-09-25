@@ -9,32 +9,6 @@ version = "2023.05"
 project {
 
     buildType(Build)
-//
-//    features {
-//        feature {
-//            id = "1"
-//            type = "ReportTab"
-//            param("startPage", "allure-report/index.html")
-//            param("title", "Allure Report")
-//        }
-//    }
-
-
-//
-//    features {
-//        buildReportTab {
-//            id = "PROJECT_EXT_52"
-//            title = "Test Results"
-////            startPage = "allure-report.zip!/allure-report/index.html"
-//            startPage = "./allure-report/index.html"
-//        }
-    //        feature {
-//            id = "1"
-//            type = "ReportTab"
-//            param("startPage", "allure-report/index.html")
-//            param("title", "Allure Report")
-//        }
-//    }
 
     features {
         feature {
@@ -45,9 +19,9 @@ project {
         }
 
         buildReportTab {
-//            id = "PROJECT_EXT_52"
             title = "Test Results"
-            startPage = "allure-report.zip!/allure-report/index.html"
+//            startPage = "allure-report.zip!/allure-report/index.html"
+            startPage = "allure-report/index.html"
         }
     }
 }
@@ -81,21 +55,12 @@ object Build : BuildType({
     }
 
 //    artifactRules = """
-//        +:allure-report => allure-report.zip
-//    """
+//    +:allure-report => allure-report.zip
+//"""
 
     artifactRules = """
-    +:allure-report => allure-report.zip
+    +:allure-report => .
 """
-
-//    features {
-//        feature {
-//            id = "1"
-//            type = "ReportTab"
-//            param("startPage", "allure-report/index.html")
-//            param("title", "Allure Report")
-//        }
-//    }
 
     triggers {
         vcs { }
