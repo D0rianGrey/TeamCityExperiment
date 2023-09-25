@@ -48,7 +48,7 @@ object Build : BuildType({
 
         maven {
             name = "Generate Allure Report from allure-results"
-            goals = "allure:serve"
+            goals = "allure:report"
         }
 //
 //        script {
