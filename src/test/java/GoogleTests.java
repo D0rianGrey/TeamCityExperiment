@@ -1,8 +1,10 @@
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 
 public class GoogleTests extends BaseTest {
+    @Description("Test description")
     @Test
     void testGoogle() {
 

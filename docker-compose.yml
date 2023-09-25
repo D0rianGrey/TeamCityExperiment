@@ -3,7 +3,7 @@ services:
   teamcity-server:
     image: jetbrains/teamcity-server:latest
     ports:
-      - "9999:8111"
+      - "8111:8111"
     volumes:
       - ./teamcity_server/datadir:/data/teamcity_server/datadir
       - ./teamcity_server/logs:/opt/teamcity/logs
@@ -13,7 +13,7 @@ services:
   teamcity-agent:
     image: jetbrains/teamcity-agent:latest
     environment:
-      - SERVER_URL=http://teamcity-server:9999
+      - SERVER_URL=http://teamcity-server:8111
     volumes:
       - ./teamcity_agent/conf:/data/teamcity_agent/conf
     networks:
@@ -26,19 +26,30 @@ services:
     networks:
       - my_test_network
 
-#  mysql:
-#    image: mysql:latest
-#    environment:
-#      MYSQL_ROOT_PASSWORD: rootpassword
-#      MYSQL_DATABASE: teamcitydb
-#      MYSQL_USER: teamcityuser
-#      MYSQL_PASSWORD: teamcitypassword
-#    volumes:
-#      - ./mysql_data:/var/lib/mysql
-#    ports:
-#      - "3306:3306"
-#    networks:
-#      - my_test_network
+  testrail:
+    image: testrail/apache:7.0.2.1014
+    ports:
+      - "8080:80"
+    environment:
+      - TESTRAIL_DB_HOST=mysql
+      - TESTRAIL_DB_NAME=testrail
+      - TESTRAIL_DB_USERNAME=testrail
+      - TESTRAIL_DB_PASSWORD=testrailpassword
+    networks:
+      - my_test_network
+
+  mysql:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=testrail
+      - MYSQL_USER=testrail
+      - MYSQL_PASSWORD=testrailpassword
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    networks:
+      - my_test_network
 
 networks:
   my_test_network:

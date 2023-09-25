@@ -42,3 +42,6 @@ build/
 /.idea/
 /postgres_data/
 /mysql_data/
+/allure-results/
+/.fastRequest/
+/.allure/
