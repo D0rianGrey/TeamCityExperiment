@@ -12,13 +12,16 @@ project {
 
 object Build : BuildType({
     name = "Test"
-
     publishArtifacts = PublishMode.ALWAYS
 
+    // Define common paths as parameters
     params {
+        param("allureResultsPath", "%teamcity.build.checkoutDir%/allure-results")
+        param("allureReportPath", "%teamcity.build.checkoutDir%/allure-report")
         param("env", "cloud_chrome")
         param("url", "https://www.google.com.ua/")
-        param("testParam", "1")
+        param("teamcity.artifacts.prepublishingCommands", "move /Y %allureReportPath% allure-report")
+        param("artifacts", "%allureReportPath% => allure-report.zip")
     }
 
     vcs {
@@ -32,12 +35,11 @@ object Build : BuildType({
             runnerArgs = "-Dmaven.test.failure.ignore=true"
         }
 
-        // Step to generate Allure report
+        // Use the parameterized paths
         exec {
             name = "Generate Allure Report"
-            path = "allure"  // Make sure allure is available in PATH
-            arguments =
-                "generate %teamcity.build.checkoutDir%/allure-results -o %teamcity.build.checkoutDir%/allure-report"
+            path = "allure"
+            arguments = "generate %allureResultsPath% -o %allureReportPath%"
         }
     }
 
@@ -47,12 +49,5 @@ object Build : BuildType({
 
     features {
         perfmon { }
-    }
-
-    // Publish Allure report as build artifact
-    artifacts {
-        artifactRules = """
-            +:%teamcity.build.checkoutDir%/allure-report => allure-report.zip
-        """.trimIndent()
     }
 })
