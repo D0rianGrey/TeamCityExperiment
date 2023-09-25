@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.projectFeatures.buildReportTab
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
@@ -19,6 +20,9 @@ project {
 
 object Build : BuildType({
     name = "Test"
+    artifactRules = """
+        +:allure-report => allure-report.zip
+    """
     publishArtifacts = PublishMode.ALWAYS
 
     // Define common paths as parameters
@@ -48,12 +52,19 @@ object Build : BuildType({
 //            path = "allure"
 //            arguments = "generate %allureResultsPath% -o %allureReportPath%"
 //        }
-        step {
-            name = "Generate test report"
-            type = "allureReportGeneratorRunner"
-            param("allure.result.directory", "allure-results")
-            param("allure.report.path.prefix", "allure-report")
-            executionMode = BuildStep.ExecutionMode.ALWAYS
+//        step {
+//            name = "Generate test report"
+//            type = "allureReportGeneratorRunner"
+//            param("allure.result.directory", "allure-results")
+//            param("allure.report.path.prefix", "allure-report")
+//            executionMode = BuildStep.ExecutionMode.ALWAYS
+//        }
+
+        script {
+            scriptContent = """
+                #!/bin/bash
+                allure generate ./allure-results --clean -o ./allure-report
+            """
         }
     }
 
