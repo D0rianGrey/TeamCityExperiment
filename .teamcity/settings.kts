@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 version = "2023.05"
@@ -26,9 +27,7 @@ project {
 
 object Build : BuildType({
     name = "Test"
-    artifactRules = """
-        +:allure-report => allure-report.zip
-    """
+
     publishArtifacts = PublishMode.ALWAYS
 
     params {
@@ -47,14 +46,18 @@ object Build : BuildType({
             goals = "clean test -Denv=%env% -Durl=%url%"
             runnerArgs = "-Dmaven.test.failure.ignore=true"
         }
-//
-//        script {
-//            scriptContent = """
-//                #!/bin/bash
-//                allure generate ./allure-results --clean -o ./allure-report
-//            """
-//        }
+
+        script {
+            scriptContent = """
+                #!/bin/bash
+                allure generate ./allure-results --clean -o ./allure-report
+            """
+        }
     }
+
+    artifactRules = """
+        +:allure-report => allure-report.zip
+    """
 
     triggers {
         vcs { }
