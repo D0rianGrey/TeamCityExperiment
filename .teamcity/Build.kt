@@ -45,17 +45,17 @@ object Build : BuildType({
 //    """.trimIndent()
 //        }
 
-//        script {
-//            name = "Send 'Hello' to Microsoft Teams"
-//            executionMode = BuildStep.ExecutionMode.ALWAYS
-//            val ALLURE_REPORT_URL =
-//                "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
-//            val WEBHOOK_URL =
-//                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
-//            scriptContent = """
-//        curl -H 'Content-Type: application/json' -d '{"text": "[View Allure Report]($ALLURE_REPORT_URL)"}' $WEBHOOK_URL
-//    """.trimIndent()
-//        }
+        script {
+            name = "Send 'Hello' to Microsoft Teams"
+            executionMode = BuildStep.ExecutionMode.ALWAYS
+            val ALLURE_REPORT_URL =
+                "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
+            val WEBHOOK_URL =
+                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
+            scriptContent = """
+        curl -H 'Content-Type: application/json' -d '{"text": "[View Allure Report]($ALLURE_REPORT_URL)"}' $WEBHOOK_URL
+    """.trimIndent()
+        }
 
 //        script {
 //            name = "Debug: Print all environment variables and parameters"
@@ -67,40 +67,40 @@ object Build : BuildType({
 //    """.trimIndent()
 //        }
 
-        script {
-            name = "Send Detailed Info to Microsoft Teams"
-            executionMode = BuildStep.ExecutionMode.ALWAYS
-            val ALLURE_REPORT_URL =
-                "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
-            val WEBHOOK_URL =
-                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
-            val BRANCH_NAME = DslContext.getParameter("teamcity.build.branch")
-            val STATUS = DslContext.getParameter("teamcity.build.status")
-            val TOTAL_TESTS = DslContext.getParameter("teamcity.build.test.total");
-            val PAYLOAD = """
-                {
-            "@type": "MessageCard",
-            "@context": "http://schema.org/extensions",
-            "summary": "Build Summary",
-            "sections": [{
-                "activityTitle": "Build Completed",
-                "activitySubtitle": "Branch: $BRANCH_NAME, Status: $STATUS, Total Tests: $TOTAL_TESTS",
-                "activityImage": "",
-                "facts": [
-                    { "name": "Branch", "value": "$BRANCH_NAME" },
-                    { "name": "Status", "value": "$STATUS" },
-                    { "name": "Total Tests Run", "value": "$TOTAL_TESTS" },
-                    { "name": "Allure Report", "value": "[View Report]($ALLURE_REPORT_URL)" }
-                ]
-            }]
-        }
-            """.trimIndent()
-
-            scriptContent = """
-
-        curl -H 'Content-Type: application/json' -d "$PAYLOAD" $WEBHOOK_URL
-    """.trimIndent()
-        }
+//        script {
+//            name = "Send Detailed Info to Microsoft Teams"
+//            executionMode = BuildStep.ExecutionMode.ALWAYS
+//            val ALLURE_REPORT_URL =
+//                "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
+//            val WEBHOOK_URL =
+//                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
+//            val BRANCH_NAME = DslContext.getParameter("teamcity.build.branch")
+//            val STATUS = DslContext.getParameter("teamcity.build.status")
+//            val TOTAL_TESTS = DslContext.getParameter("teamcity.build.test.total");
+//            val PAYLOAD = """
+//                {
+//            "@type": "MessageCard",
+//            "@context": "http://schema.org/extensions",
+//            "summary": "Build Summary",
+//            "sections": [{
+//                "activityTitle": "Build Completed",
+//                "activitySubtitle": "Branch: $BRANCH_NAME, Status: $STATUS, Total Tests: $TOTAL_TESTS",
+//                "activityImage": "",
+//                "facts": [
+//                    { "name": "Branch", "value": "$BRANCH_NAME" },
+//                    { "name": "Status", "value": "$STATUS" },
+//                    { "name": "Total Tests Run", "value": "$TOTAL_TESTS" },
+//                    { "name": "Allure Report", "value": "[View Report]($ALLURE_REPORT_URL)" }
+//                ]
+//            }]
+//        }
+//            """.trimIndent()
+//
+//            scriptContent = """
+//
+//        curl -H 'Content-Type: application/json' -d "$PAYLOAD" $WEBHOOK_URL
+//    """.trimIndent()
+//        }
 
 
 //        script {
