@@ -58,20 +58,55 @@ object Build : BuildType({
 //    """.trimIndent()
 //        }
 
+//        script {
+//            name = "Send Adaptive Card to Microsoft Teams"
+//            executionMode = BuildStep.ExecutionMode.ALWAYS
+//            val WEBHOOK_URL =
+//                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
+//            val PAYLOAD = """
+//                {
+//            "type": "message",
+//            "attachments": [
+//                {
+//                    "contentType": "application/vnd.microsoft.card.adaptive",
+//                    "contentUrl": null,
+//                    "content": {
+//                        "schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+//                        "type": "AdaptiveCard",
+//                        "version": "1.2",
+//                        "body": [
+//                            {
+//                                "type": "TextBlock",
+//                                "text": "For Samples and Templates, see [https://adaptivecards.io/samples](https://adaptivecards.io/samples)"
+//                            }
+//                        ]
+//                    }
+//                }
+//            ]
+//        }
+//            """.trimIndent()
+//            scriptContent = """
+//        curl -H 'Content-Type: application/json' -d "$PAYLOAD" $WEBHOOK_URL
+//    """.trimIndent()
+//        }
+
         script {
-            name = "Send Adaptive Card to Microsoft Teams"
+            name = "Send using Python"
             executionMode = BuildStep.ExecutionMode.ALWAYS
-            val WEBHOOK_URL =
-                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
-            val PAYLOAD = """
-                {
+            scriptContent = """
+        python - <<END
+        import requests
+        import json
+
+        WEBHOOK_URL = 'https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca'
+        payload = {
             "type": "message",
             "attachments": [
                 {
                     "contentType": "application/vnd.microsoft.card.adaptive",
-                    "contentUrl": null,
+                    "contentUrl": None,
                     "content": {
-                        "schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
                         "type": "AdaptiveCard",
                         "version": "1.2",
                         "body": [
@@ -84,9 +119,12 @@ object Build : BuildType({
                 }
             ]
         }
-            """.trimIndent()
-            scriptContent = """
-        curl -H 'Content-Type: application/json' -d "$PAYLOAD" $WEBHOOK_URL
+
+        headers = {'Content-Type': 'application/json'}
+        response = requests.post(WEBHOOK_URL, headers=headers, data=json.dumps(payload))
+        print(response.status_code)
+        print(response.content)
+        END
     """.trimIndent()
         }
 
