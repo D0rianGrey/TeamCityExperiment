@@ -49,7 +49,7 @@ object Build : BuildType({
         script {
             name = "Send 'Hello' to Microsoft Teams"
             executionMode = BuildStep.ExecutionMode.ALWAYS
-            val BRANCH_NAME = "teamcity.build.branch"
+            val BRANCH_NAME = "%teamcity.build.branch%"
             val ALLURE_REPORT_URL =
                 "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
             val WEBHOOK_URL =
