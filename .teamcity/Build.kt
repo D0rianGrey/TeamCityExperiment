@@ -113,7 +113,7 @@ object Build : BuildType({
 }
             """.trimIndent()
             scriptContent = """
-        curl -H 'Content-Type: application/json' -d "$PAYLOAD" $WEBHOOK_URL
+        curl -H 'Content-Type: application/json' -d '$PAYLOAD' $WEBHOOK_URL
     """.trimIndent()
         }
     }
