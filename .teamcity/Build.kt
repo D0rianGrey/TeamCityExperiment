@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.BuildStep
 import jetbrains.buildServer.configs.kotlin.BuildType
 import jetbrains.buildServer.configs.kotlin.DslContext
+import jetbrains.buildServer.configs.kotlin.DslContext.getParameter
 import jetbrains.buildServer.configs.kotlin.PublishMode
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
@@ -48,7 +49,7 @@ object Build : BuildType({
         script {
             name = "Send 'Hello' to Microsoft Teams"
             executionMode = BuildStep.ExecutionMode.ALWAYS
-            val BRANCH_NAME = DslContext.getParameter("teamcity.build.branch")
+            val BRANCH_NAME = "teamcity.build.branch"
             val ALLURE_REPORT_URL =
                 "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
             val WEBHOOK_URL =
