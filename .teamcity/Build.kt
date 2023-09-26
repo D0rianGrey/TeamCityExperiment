@@ -34,6 +34,17 @@ object Build : BuildType({
             goals = "allure:report"
         }
 
+
+        script {
+            name = "Send 'Hello' to Microsoft Teams"
+            executionMode = BuildStep.ExecutionMode.ALWAYS
+            val WEBHOOK_URL =
+                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
+            scriptContent = """
+        curl -H 'Content-Type: application/json' -d '{"text": "Hello"}' \$WEBHOOK_URL
+    """.trimIndent()
+        }
+
 //        script {
 //            name = "Set Allure Report URL"
 //            executionMode = BuildStep.ExecutionMode.RUN_ON_SUCCESS
@@ -41,18 +52,6 @@ object Build : BuildType({
 //                    echo "##teamcity[setParameter name='env.ALLURE_REPORT_URL' value='http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results']"
 //                """.trimIndent()
 //        }
-
-        script {
-            name = "Send 'Link to report' to Microsoft Teams"
-            executionMode = BuildStep.ExecutionMode.ALWAYS
-            val WEBHOOK_URL =
-                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
-            val ALLURE_REPORT_URL =
-                "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results]"
-            scriptContent = """
-        curl -H 'Content-Type: application/json' -d '{"text": "Allure Report is available at $ALLURE_REPORT_URL"}' \$WEBHOOK_URL
-    """.trimIndent()
-        }
 
 //        script {
 //            name = "Send Allure report to Microsoft Teams"
