@@ -89,7 +89,6 @@ object Build : BuildType({
 //        curl -H 'Content-Type: application/json' -d "$PAYLOAD" $WEBHOOK_URL
 //    """.trimIndent()
 //        }
-
         script {
             name = "Send using Python"
             executionMode = BuildStep.ExecutionMode.ALWAYS
