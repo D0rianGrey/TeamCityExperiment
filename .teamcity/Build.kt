@@ -47,6 +47,44 @@ object Build : BuildType({
     """.trimIndent()
         }
 
+        script {
+            name = "Send 'Hello' to Microsoft Teams"
+            executionMode = BuildStep.ExecutionMode.ALWAYS
+            val WEBHOOK_URL =
+                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
+            val payload = """
+                {
+            "type": "message",
+            "attachments": [
+                {
+                    "contentType": "application/vnd.microsoft.card.adaptive",
+                    "contentUrl": null,
+                    "content": {
+                        "schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                        "type": "AdaptiveCard",
+                        "version": "1.2",
+                        "body": [
+                            {
+                                "type": "TextBlock",
+                                "text": "BRANCH_NAME",
+                                "wrap": true
+                            },
+                            {
+                                "type": "TextBlock",
+                                "text": "[View Allure Report](ALLURE_REPORT_URL)",
+                                "wrap": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+            """.trimIndent()
+            scriptContent = """
+        curl -H 'Content-Type: application/json' -d '$payload' $WEBHOOK_URL
+    """.trimIndent()
+        }
+
 
 //        script {
 //            name = "Send 'Hello' to Microsoft Teams"
