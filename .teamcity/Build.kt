@@ -58,6 +58,16 @@ object Build : BuildType({
 //        }
 
         script {
+            name = "Debug: Print all environment variables and parameters"
+            scriptContent = """
+        printenv
+        echo "TeamCity parameters:"
+        echo "teamcity.build.status = %teamcity.build.status%"
+        echo "teamcity.build.test.total = %teamcity.build.test.total%"
+    """.trimIndent()
+        }
+
+        script {
             name = "Send Detailed Info to Microsoft Teams"
             executionMode = BuildStep.ExecutionMode.ALWAYS
             val ALLURE_REPORT_URL =
