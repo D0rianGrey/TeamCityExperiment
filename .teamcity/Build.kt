@@ -34,6 +34,19 @@ object Build : BuildType({
             goals = "allure:report"
         }
 
+        script {
+            name = "Send 'Hello' to Microsoft Teams"
+            executionMode = BuildStep.ExecutionMode.ALWAYS
+            val BRANCH_NAME = "%teamcity.build.branch%"
+            val ALLURE_REPORT_URL =
+                "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
+            val WEBHOOK_URL =
+                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
+            scriptContent = """
+        curl -H 'Content-Type: application/json' -d '{"text": "$BRANCH_NAME [View Allure Report]($ALLURE_REPORT_URL)"}' $WEBHOOK_URL
+    """.trimIndent()
+        }
+
 
 //        script {
 //            name = "Send 'Hello' to Microsoft Teams"
@@ -42,19 +55,6 @@ object Build : BuildType({
 //                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
 //            scriptContent = """
 //        curl -H 'Content-Type: application/json' -d '{"text": "Hello"}' \$WEBHOOK_URL
-//    """.trimIndent()
-//        }
-
-//        script {
-//            name = "Send 'Hello' to Microsoft Teams"
-//            executionMode = BuildStep.ExecutionMode.ALWAYS
-//            val BRANCH_NAME = "%teamcity.build.branch%"
-//            val ALLURE_REPORT_URL =
-//                "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
-//            val WEBHOOK_URL =
-//                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
-//            scriptContent = """
-//        curl -H 'Content-Type: application/json' -d '{"text": "$BRANCH_NAME [View Allure Report]($ALLURE_REPORT_URL)"}' $WEBHOOK_URL
 //    """.trimIndent()
 //        }
 
@@ -89,43 +89,43 @@ object Build : BuildType({
 //        curl -H 'Content-Type: application/json' -d "$PAYLOAD" $WEBHOOK_URL
 //    """.trimIndent()
 //        }
-        script {
-            name = "Send using Python"
-            executionMode = BuildStep.ExecutionMode.ALWAYS
-            scriptContent = """
-        python - <<END
-        import requests
-        import json
-
-        WEBHOOK_URL = 'https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca'
-        payload = {
-            "type": "message",
-            "attachments": [
-                {
-                    "contentType": "application/vnd.microsoft.card.adaptive",
-                    "contentUrl": None,
-                    "content": {
-                        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-                        "type": "AdaptiveCard",
-                        "version": "1.2",
-                        "body": [
-                            {
-                                "type": "TextBlock",
-                                "text": "For Samples and Templates, see [https://adaptivecards.io/samples](https://adaptivecards.io/samples)"
-                            }
-                        ]
-                    }
-                }
-            ]
-        }
-
-        headers = {'Content-Type': 'application/json'}
-        response = requests.post(WEBHOOK_URL, headers=headers, data=json.dumps(payload))
-        print(response.status_code)
-        print(response.content)
-        END
-    """.trimIndent()
-        }
+//        script {
+//            name = "Send using Python"
+//            executionMode = BuildStep.ExecutionMode.ALWAYS
+//            scriptContent = """
+//        python - <<END
+//        import requests
+//        import json
+//
+//        WEBHOOK_URL = 'https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca'
+//        payload = {
+//            "type": "message",
+//            "attachments": [
+//                {
+//                    "contentType": "application/vnd.microsoft.card.adaptive",
+//                    "contentUrl": None,
+//                    "content": {
+//                        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+//                        "type": "AdaptiveCard",
+//                        "version": "1.2",
+//                        "body": [
+//                            {
+//                                "type": "TextBlock",
+//                                "text": "For Samples and Templates, see [https://adaptivecards.io/samples](https://adaptivecards.io/samples)"
+//                            }
+//                        ]
+//                    }
+//                }
+//            ]
+//        }
+//
+//        headers = {'Content-Type': 'application/json'}
+//        response = requests.post(WEBHOOK_URL, headers=headers, data=json.dumps(payload))
+//        print(response.status_code)
+//        print(response.content)
+//        END
+//    """.trimIndent()
+//        }
 
 //        script {
 //            name = "Debug: Print all environment variables and parameters"
