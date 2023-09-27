@@ -1,6 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.BuildStep
 import jetbrains.buildServer.configs.kotlin.BuildType
-import jetbrains.buildServer.configs.kotlin.CustomChart.SeriesKey.Companion.PASSED_TESTS
 import jetbrains.buildServer.configs.kotlin.DslContext
 import jetbrains.buildServer.configs.kotlin.PublishMode
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
@@ -36,18 +35,14 @@ object Build : BuildType({
             goals = "allure:report"
         }
 
-//        script {
-//            name = "Send 'Hello' to Microsoft Teams"
-//            executionMode = BuildStep.ExecutionMode.ALWAYS
-//            val BRANCH_NAME = "%teamcity.build.branch%"
-//            val ALLURE_REPORT_URL =
-//                "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
-//            val WEBHOOK_URL =
-//                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
-//            scriptContent = """
-//        curl -H 'Content-Type: application/json' -d '{"text": "$BRANCH_NAME [View Allure Report]($ALLURE_REPORT_URL)"}' $WEBHOOK_URL
-//    """.trimIndent()
-//        }
+        script {
+            name = "Parse JSON to Get Passed Test Count and Set TeamCity Parameter"
+            scriptContent = """
+        PASSED_COUNT=(jq '.counters.passed' allure-report/export/prometheusData.txt)
+        echo "##teamcity[setParameter name='env.PASSED_TESTS' value='PASSED_COUNT']"
+    """.trimIndent()
+        }
+
 
         script {
             name = "Send Adaptive Card to Microsoft Teams as Allure report"
@@ -105,7 +100,7 @@ object Build : BuildType({
       "facts": [
         {
         "name": "Number of Passed Tests",
-        "value": "$PASSED"
+        "value": "%env.VARIABLE_NAME%"
         }
       ]
     }
