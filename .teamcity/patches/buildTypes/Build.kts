@@ -1,6 +1,8 @@
 package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.*
+import jetbrains.buildServer.configs.kotlin.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.ui.*
 
 /*
@@ -24,4 +26,86 @@ changeBuildType(RelativeId("Build")) {
         "Unexpected option value: allowExternalStatus = $allowExternalStatus"
     }
     allowExternalStatus = true
+
+    expectSteps {
+        maven {
+            name = "Test with creation allure-results"
+            goals = "clean test -Denv=%env% -Durl=%url%"
+            runnerArgs = "-Dmaven.test.failure.ignore=true"
+        }
+        maven {
+            name = "Generate Allure Report from allure-results"
+            goals = "allure:report"
+        }
+        script {
+            name = "Send Adaptive Card to Microsoft Teams as Allure report"
+            executionMode = BuildStep.ExecutionMode.ALWAYS
+            scriptContent = """
+                curl -H 'Content-Type: application/json' -d '                {
+                  "@context": "http://schema.org/extensions",
+                  "@type": "MessageCard",
+                  "themeColor": "0076D7",
+                  "title": "Allure Report",
+                  "text": "This is a simplified report after the job is completed",
+                  "sections": [
+                    {
+                      "startGroup": true,
+                      "title": "**Information about build:**",
+                      "facts": [
+                        {
+                          "name": "Branch name",
+                          "value": "%teamcity.build.branch%"
+                        },
+                        {
+                          "name": "Build ID",
+                          "value": "%teamcity.build.id%"
+                        },
+                        {
+                          "name": "Agent name",
+                          "value": "%teamcity.agent.name%"
+                        },
+                        {
+                        "name": "Triggered by user name",
+                        "value": "%teamcity.build.triggeredBy.username%"
+                        }
+                      ]
+                    },
+                    {
+                      "startGroup": true,
+                      "title": "**Information about tests:**",
+                      "facts": [
+                        {
+                        "name": "Number of Passed Tests",
+                        "value": "Passed"
+                        }
+                      ]
+                    }
+                  ],
+                  "potentialAction": [
+                    {
+                      "@type": "OpenUri",
+                      "name": "Open detailed report",
+                      "targets": [
+                        {
+                          "os": "default",
+                          "uri": "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
+                        }
+                      ]
+                    }
+                  ]
+                }' https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca
+            """.trimIndent()
+        }
+    }
+    steps {
+        insert(3) {
+            script {
+                name = "Command Line from UI"
+                scriptContent = """
+                    PASSED_COUNT=${'$'}(jq '.counters.passed' allure-report/export/prometheusData.txt)
+                    echo "##teamcity[setParameter name='env.PASSED_TESTS' value='${'$'}PASSED_COUNT']"
+                """.trimIndent()
+            }
+        }
+    }
 }
