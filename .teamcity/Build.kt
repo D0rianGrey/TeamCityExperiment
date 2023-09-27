@@ -1,5 +1,6 @@
 import jetbrains.buildServer.configs.kotlin.BuildStep
 import jetbrains.buildServer.configs.kotlin.BuildType
+import jetbrains.buildServer.configs.kotlin.CustomChart.SeriesKey.Companion.PASSED_TESTS
 import jetbrains.buildServer.configs.kotlin.DslContext
 import jetbrains.buildServer.configs.kotlin.PublishMode
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
@@ -48,20 +49,8 @@ object Build : BuildType({
 //        }
 
         script {
-            name = "Fetch Number of Passed Tests"
-            val PASSED_TESTS = """
-                curl -u 'eugene:eugene' 'http://localhost:8111/app/rest/builds/id:%teamcity.build.id%/statistics/statisticValue:PassedTest'
-                """.trimIndent()
-            executionMode = BuildStep.ExecutionMode.ALWAYS
-            scriptContent = """
-        echo "##teamcity[setParameter name='env.PASSED_TESTS' value='$PASSED_TESTS']"
-    """.trimIndent()
-        }
-
-        script {
             name = "Send Adaptive Card to Microsoft Teams as Allure report"
             executionMode = BuildStep.ExecutionMode.ALWAYS
-            val PASSED_TESTS = "%env.PASSED_TESTS%"
 
             //Basic info
             val ALLURE_REPORT_URL =
