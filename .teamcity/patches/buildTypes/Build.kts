@@ -98,7 +98,7 @@ changeBuildType(RelativeId("Build")) {
         }
     }
     steps {
-        insert(3) {
+        insert(2) {
             script {
                 name = "Command Line from UI"
                 scriptContent = """
