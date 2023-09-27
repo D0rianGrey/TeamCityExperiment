@@ -74,85 +74,85 @@ object Build : BuildType({
                 "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
             val PAYLOAD = """
                 {
-    "@context": "http://schema.org/extensions",
-    "@type": "MessageCard",
-    "themeColor": "0076D7",
-    "title": "Allure Report",
-    "text": "This is a simplified report after the job is completed",
-    "sections": [
+  "@context": "http://schema.org/extensions",
+  "@type": "MessageCard",
+  "themeColor": "0076D7",
+  "title": "Allure Report",
+  "text": "This is a simplified report after the job is completed",
+  "sections": [
+    {
+      "startGroup": true,
+      "title": "**Information about build:**",
+      "facts": [
         {
-            "startGroup": true,
-            "title": "**Information about build:**",
-            "facts": [
-                {
-                    "name": "Branch name",
-                    "value": "$BRANCH_NAME"
-                },
-                {
-                "name": "Build ID",
-                "value": "$BUILD_ID"
-                },
-                {
-                "name": "Build type ID",
-                "value": "$BUILD_TYPE_ID"
-                },
-                {
-                "name": "Project ID",
-                "value": "$PROJECT_ID"
-                },
-                {
-                "name": "Source directory",
-                "value": "$SOURCE_DIRECTORY"
-                },
-                {
-                "name": "Build working directory",
-                "value": "$BUILD_WORKING_DIRECTORY"
-                },
-                {
-                "name": "Agent name",
-                "value": "$AGENT_NAME"
-                },
-                {
-                "name": "CPU count",
-                "value": "$CPU_COUNT"
-                },
-                {
-                "name": "Start date build",
-                "value": "$START_DATE_BUILD"
-                },
-                {
-                "name": "Finish date build",
-                "value": "$FINISH_DATE_BUILD"
-                }
-            ]
+          "name": "Branch name",
+          "value": "$BRANCH_NAME"
         },
         {
-            "startGroup": true,
-            "title": "**Information about tests:**",
-            "facts": [
-                {
-                    "name": "Fact 1",
-                    "value": "Value 1"
-                },
-                {
-                    "name": "Fact 2",
-                    "value": "Value 2"
-                }
-            ]
-        }
-    ],
-    "potentialAction": [
+          "name": "Build ID",
+          "value": "$BUILD_ID"
+        },
         {
-            "@type": "OpenUri",
-            "name": "Open detailed report",
-            "targets": [
-                {
-                    "os": "default",
-                    "uri": "$ALLURE_REPORT_URL"
-                }
-            ]
+          "name": "Build type ID",
+          "value": "$BUILD_TYPE_ID"
+        },
+        {
+          "name": "Project ID",
+          "value": "$PROJECT_ID"
+        },
+        {
+          "name": "Source directory",
+          "value": "$SOURCE_DIRECTORY"
+        },
+        {
+          "name": "Build working directory",
+          "value": "$BUILD_WORKING_DIRECTORY"
+        },
+        {
+          "name": "Agent name",
+          "value": "$AGENT_NAME"
+        },
+        {
+          "name": "CPU count",
+          "value": "$CPU_COUNT"
+        },
+        {
+          "name": "Start date build",
+          "value": "$START_DATE_BUILD"
+        },
+        {
+          "name": "Finish date build",
+          "value": "$FINISH_DATE_BUILD"
         }
-    ]
+      ]
+    },
+    {
+      "startGroup": true,
+      "title": "**Information about tests:**",
+      "facts": [
+        {
+          "name": "Fact 1",
+          "value": "Value 1"
+        },
+        {
+          "name": "Fact 2",
+          "value": "Value 2"
+        }
+      ]
+    }
+  ],
+  "potentialAction": [
+    {
+      "@type": "OpenUri",
+      "name": "Open detailed report",
+      "targets": [
+        {
+          "os": "default",
+          "uri": "$ALLURE_REPORT_URL"
+        }
+      ]
+    }
+  ]
 }
             """.trimIndent()
             scriptContent = """
