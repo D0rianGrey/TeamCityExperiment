@@ -24,10 +24,4 @@ changeBuildType(RelativeId("Build")) {
         "Unexpected option value: allowExternalStatus = $allowExternalStatus"
     }
     allowExternalStatus = true
-
-    params {
-        add {
-            param("env.PASSED_TESTS", "0")
-        }
-    }
 }
