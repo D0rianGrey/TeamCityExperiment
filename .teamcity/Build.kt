@@ -81,6 +81,7 @@ object Build : BuildType({
             // About build
             val BRANCH_NAME = "%teamcity.build.branch%"
             val BUILD_ID = "%teamcity.build.id%"
+            val BUILD_NUMBER = "%build.number%"
             val AGENT_NAME = "%teamcity.agent.name%"
             val TRIGGERED_BY_USER_NAME = "%teamcity.build.triggeredBy.username%"
 
@@ -109,6 +110,10 @@ object Build : BuildType({
           "value": "$BUILD_ID"
         },
         {
+          "name": "Build Number",
+          "value": "$BUILD_NUMBER"
+        },
+        {
           "name": "Agent name",
           "value": "$AGENT_NAME"
         },
@@ -131,11 +136,11 @@ object Build : BuildType({
         "value": "%env.FAILED_TESTS%"
         },
         {
-        "name": "Number of Failed Tests",
+        "name": "Number of Skipped Tests",
         "value": "%env.SKIPPED_TESTS%"
         },
         {
-        "name": "Number of Failed Tests",
+        "name": "Duration",
         "value": "%env.DURATION%"
         }
       ]
