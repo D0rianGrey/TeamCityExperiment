@@ -55,19 +55,13 @@ object Build : BuildType({
             //Basic info
             val ALLURE_REPORT_URL =
                 "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
+
             // About build
             val BRANCH_NAME = "%teamcity.build.branch%"
             val BUILD_ID = "%teamcity.build.id%"
             val AGENT_NAME = "%teamcity.agent.name%"
             val TRIGGERED_BY = "%teamcity.build.triggeredBy%"
             val TRIGGERED_BY_USER_NAME = "%teamcity.build.triggeredBy.username%"
-//            val BUILD_TYPE_ID = "%teamcity.buildType.id%"
-//            val PROJECT_ID = "%teamcity.project.id%"
-//            val SOURCE_DIRECTORY = "%teamcity.build.checkoutDir%"
-//            val BUILD_WORKING_DIRECTORY = "%teamcity.build.workingDir%"
-//            val CPU_COUNT = "%teamcity.agent.hardware.cpuCount%"
-//            val START_DATE_BUILD = "%teamcity.build.startDate%"
-//            val FINISH_DATE_BUILD = "%teamcity.build.finishDate%"
 
             // About tests
 
@@ -114,7 +108,7 @@ object Build : BuildType({
       "facts": [
         {
         "name": "Number of Passed Tests",
-        "value": "$PASSED_TESTS"
+        "value": "${PASSED_TESTS.keyValue}"
         }
       ]
     }
