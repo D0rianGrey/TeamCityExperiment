@@ -17,7 +17,6 @@ object Build : BuildType({
     params {
         param("env", "cloud_chrome")
         param("url", "https://www.google.com.ua/")
-        param("test", "1")
     }
 
     vcs {
@@ -36,13 +35,13 @@ object Build : BuildType({
             goals = "allure:report"
         }
 
-        script {
-            name = "Parse JSON to Get Passed Test Count and Set TeamCity Parameter"
-            scriptContent = """
-        PASSED_COUNT=$(jq '.counters.passed' allure-report/export/prometheusData.txt)
-        echo "##teamcity[setParameter name='env.PASSED_TESTS' value='$PASSED_COUNT']"
-    """.trimIndent()
-        }
+//        script {
+//            name = "Parse JSON to Get Passed Test Count and Set TeamCity Parameter"
+//            scriptContent = """
+//        PASSED_COUNT=$(jq '.counters.passed' allure-report/export/prometheusData.txt)
+//        echo "##teamcity[setParameter name='env.PASSED_TESTS' value='$PASSED_COUNT']"
+//    """.trimIndent()
+//        }
 
 
         script {
@@ -99,7 +98,7 @@ object Build : BuildType({
       "facts": [
         {
         "name": "Number of Passed Tests",
-        "value": "%env.PASSED_TESTS%"
+        "value": "Passed"
         }
       ]
     }
