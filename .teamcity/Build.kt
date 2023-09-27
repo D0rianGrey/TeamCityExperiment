@@ -65,7 +65,7 @@ object Build : BuildType({
 
             // About tests
 
-            val PASSED = BuildFailureOnMetric.MetricType.PASSED_TEST_COUNT
+            val PASSED = BuildFailureOnMetric.MetricType.PASSED_TEST_COUNT.toString()
 
             val WEBHOOK_URL =
                 "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
