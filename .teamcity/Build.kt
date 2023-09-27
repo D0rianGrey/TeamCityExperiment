@@ -34,22 +34,25 @@ object Build : BuildType({
             goals = "allure:report"
         }
 
-        script {
-            name = "Send 'Hello' to Microsoft Teams"
-            executionMode = BuildStep.ExecutionMode.ALWAYS
-            val BRANCH_NAME = "%teamcity.build.branch%"
-            val ALLURE_REPORT_URL =
-                "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
-            val WEBHOOK_URL =
-                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
-            scriptContent = """
-        curl -H 'Content-Type: application/json' -d '{"text": "$BRANCH_NAME [View Allure Report]($ALLURE_REPORT_URL)"}' $WEBHOOK_URL
-    """.trimIndent()
-        }
+//        script {
+//            name = "Send 'Hello' to Microsoft Teams"
+//            executionMode = BuildStep.ExecutionMode.ALWAYS
+//            val BRANCH_NAME = "%teamcity.build.branch%"
+//            val ALLURE_REPORT_URL =
+//                "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
+//            val WEBHOOK_URL =
+//                "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
+//            scriptContent = """
+//        curl -H 'Content-Type: application/json' -d '{"text": "$BRANCH_NAME [View Allure Report]($ALLURE_REPORT_URL)"}' $WEBHOOK_URL
+//    """.trimIndent()
+//        }
 
         script {
             name = "Send Adaptive Card to Microsoft Teams"
             executionMode = BuildStep.ExecutionMode.ALWAYS
+            val ALLURE_REPORT_URL =
+                "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
+            val BRANCH_NAME = "%teamcity.build.branch%"
             val WEBHOOK_URL =
                 "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
             val PAYLOAD = """
@@ -57,16 +60,22 @@ object Build : BuildType({
     "@context": "http://schema.org/extensions",
     "@type": "MessageCard",
     "themeColor": "0076D7",
-    "title": "Card Title",
-    "text": "This is a sample Connector Card for Microsoft 365 Groups.",
+    "title": "Allure Report",
+    "text": "This is a simplified report after the job is completed",
     "sections": [
         {
             "startGroup": true,
-            "title": "Section Title",
-            "text": "Section text",
-            "activityTitle": "Activity title",
-            "activitySubtitle": "Activity subtitle",
-            "activityImage": "https://example.com/image.jpg",
+            "title": "**Information about build:**",
+            "facts": [
+                {
+                    "name": "Branch name",
+                    "value": "$BRANCH_NAME"
+                }
+            ]
+        },
+        {
+            "startGroup": true,
+            "title": "**Information about tests:**",
             "facts": [
                 {
                     "name": "Fact 1",
@@ -82,30 +91,11 @@ object Build : BuildType({
     "potentialAction": [
         {
             "@type": "OpenUri",
-            "name": "Go to Website",
+            "name": "Open detailed report",
             "targets": [
                 {
                     "os": "default",
-                    "uri": "https://example.com"
-                }
-            ]
-        },
-        {
-            "@type": "ActionCard",
-            "name": "Comment",
-            "inputs": [
-                {
-                    "@type": "TextInput",
-                    "id": "comment",
-                    "isMultiline": false,
-                    "title": "Add a comment"
-                }
-            ],
-            "actions": [
-                {
-                    "@type": "HttpPOST",
-                    "name": "Save",
-                    "target": "https://example.com/save-comment"
+                    "uri": "$ALLURE_REPORT_URL"
                 }
             ]
         }
