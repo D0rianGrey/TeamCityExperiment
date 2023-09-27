@@ -58,13 +58,15 @@ object Build : BuildType({
             // About build
             val BRANCH_NAME = "%teamcity.build.branch%"
             val BUILD_ID = "%teamcity.build.id%"
-            val BUILD_TYPE_ID = "%teamcity.buildType.id%"
-            val PROJECT_ID = "%teamcity.project.id%"
-            val SOURCE_DIRECTORY = "%teamcity.build.checkoutDir%"
-            val BUILD_WORKING_DIRECTORY = "%teamcity.build.workingDir%"
             val AGENT_NAME = "%teamcity.agent.name%"
-            val CPU_COUNT = "%teamcity.agent.hardware.cpuCount%"
-            val START_DATE_BUILD = "%teamcity.build.startDate%"
+            val TRIGGERED_BY = "teamcity.build.triggeredBy"
+            val TRIGGERED_BY_USER_NAME = "teamcity.build.triggeredBy.username"
+//            val BUILD_TYPE_ID = "%teamcity.buildType.id%"
+//            val PROJECT_ID = "%teamcity.project.id%"
+//            val SOURCE_DIRECTORY = "%teamcity.build.checkoutDir%"
+//            val BUILD_WORKING_DIRECTORY = "%teamcity.build.workingDir%"
+//            val CPU_COUNT = "%teamcity.agent.hardware.cpuCount%"
+//            val START_DATE_BUILD = "%teamcity.build.startDate%"
 //            val FINISH_DATE_BUILD = "%teamcity.build.finishDate%"
 
             // About tests
@@ -93,32 +95,16 @@ object Build : BuildType({
           "value": "$BUILD_ID"
         },
         {
-          "name": "Build type ID",
-          "value": "$BUILD_TYPE_ID"
-        },
-        {
-          "name": "Project ID",
-          "value": "$PROJECT_ID"
-        },
-        {
-          "name": "Source directory",
-          "value": "$SOURCE_DIRECTORY"
-        },
-        {
-          "name": "Build working directory",
-          "value": "$BUILD_WORKING_DIRECTORY"
-        },
-        {
           "name": "Agent name",
           "value": "$AGENT_NAME"
         },
         {
-          "name": "CPU count",
-          "value": "$CPU_COUNT"
+        "name": "Triggered by",
+        "value": "$TRIGGERED_BY"
         },
         {
-          "name": "Start date build",
-          "value": "$START_DATE_BUILD"
+        "name": "Triggered by user name",
+        "value": "$TRIGGERED_BY_USER_NAME"
         }
       ]
     },
