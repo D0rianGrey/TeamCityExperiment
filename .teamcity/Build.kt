@@ -50,9 +50,26 @@ object Build : BuildType({
         script {
             name = "Send Adaptive Card to Microsoft Teams as Allure report"
             executionMode = BuildStep.ExecutionMode.ALWAYS
+
+            //Basic info
             val ALLURE_REPORT_URL =
                 "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
+
+            // About build
             val BRANCH_NAME = "%teamcity.build.branch%"
+            val BUILD_ID = "%teamcity.build.id%"
+            val BUILD_TYPE_ID = "%teamcity.buildType.id%"
+            val PROJECT_ID = "%teamcity.project.id%"
+            val SOURCE_DIRECTORY = "%teamcity.build.checkoutDir%"
+            val BUILD_WORKING_DIRECTORY = "%teamcity.build.workingDir%"
+            val AGENT_NAME = "%teamcity.agent.name%"
+            val CPU_COUNT = "%teamcity.agent.hardware.cpuCount%"
+            val START_DATE_BUILD = "%teamcity.build.startDate%"
+            val FINISH_DATE_BUILD = "%teamcity.build.finishDate%"
+
+            // About tests
+
+
             val WEBHOOK_URL =
                 "https://vakerin.webhook.office.com/webhookb2/9c1222ef-4e94-4519-8587-4c6d274a897d@09e68569-5204-4f37-8857-099b0cdfc689/IncomingWebhook/e665721392a24e019db0c59371fe5bb2/a217d337-3a25-44ea-bf80-629df276aeca"
             val PAYLOAD = """
@@ -70,6 +87,42 @@ object Build : BuildType({
                 {
                     "name": "Branch name",
                     "value": "$BRANCH_NAME"
+                },
+                {
+                "name": "Build ID",
+                "value": "$BUILD_ID"
+                },
+                {
+                "name": "Build type ID",
+                "value": "$BUILD_TYPE_ID"
+                },
+                {
+                "name": "Project ID",
+                "value": "$PROJECT_ID"
+                },
+                {
+                "name": "Source directory",
+                "value": "$SOURCE_DIRECTORY"
+                },
+                {
+                "name": "Build working directory",
+                "value": "$BUILD_WORKING_DIRECTORY"
+                },
+                {
+                "name": "Agent name",
+                "value": "$AGENT_NAME"
+                },
+                {
+                "name": "CPU count",
+                "value": "$CPU_COUNT"
+                },
+                {
+                "name": "Start date build",
+                "value": "$START_DATE_BUILD"
+                },
+                {
+                "name": "Finish date build",
+                "value": "$FINISH_DATE_BUILD"
                 }
             ]
         },
