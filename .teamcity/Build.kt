@@ -35,6 +35,15 @@ object Build : BuildType({
         }
 
         script {
+            name = "Command Line from UI"
+            executionMode = BuildStep.ExecutionMode.ALWAYS
+            scriptContent = """
+                    PASSED_COUNT=${'$'}(jq '.counters.passed' allure-report/export/prometheusData.txt)
+                    echo "##teamcity[setParameter name='env.PASSED_TESTS' value='${'$'}PASSED_COUNT']"
+                """.trimIndent()
+        }
+
+        script {
             name = "Send Adaptive Card to Microsoft Teams as Allure report"
             executionMode = BuildStep.ExecutionMode.ALWAYS
 
