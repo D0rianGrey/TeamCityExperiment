@@ -30,6 +30,9 @@ changeBuildType(RelativeId("Build")) {
             text("env.DURATION", "", allowEmpty = true)
         }
         add {
+            text("env.FAILED_TESTS", "", allowEmpty = true)
+        }
+        add {
             param("env.PASSED_TESTS", "0")
         }
     }
