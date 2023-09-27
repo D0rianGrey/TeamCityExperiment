@@ -34,21 +34,39 @@ object Build : BuildType({
             goals = "allure:report"
         }
 
-//        script {
-//            name = "Command Line from UI"
-//            executionMode = BuildStep.ExecutionMode.ALWAYS
-//            scriptContent = """
-//                PASSED_COUNT=${'$'}(jq '.counters.passed' allure-report/export/prometheusData.txt)
-//                echo "##teamcity[setParameter name='env.PASSED_TESTS' value='${'$'}PASSED_COUNT']"
-//                """.trimIndent()
-//        }
-
         script {
-            name = "Command Line from UI"
+            name = "Get passed tests from Allure Report"
             executionMode = BuildStep.ExecutionMode.ALWAYS
             scriptContent = """
         PASSED_COUNT=${'$'}(awk '/launch_status_passed/ {print $2}' allure-report/export/prometheusData.txt)
         echo "##teamcity[setParameter name='env.PASSED_TESTS' value='${'$'}PASSED_COUNT']"
+    """.trimIndent()
+        }
+
+        script {
+            name = "Get failed tests from Allure Report"
+            executionMode = BuildStep.ExecutionMode.ALWAYS
+            scriptContent = """
+        FAILED_COUNT=${'$'}(awk '/launch_status_failed/ {print $2}' allure-report/export/prometheusData.txt)
+        echo "##teamcity[setParameter name='env.FAILED_TESTS' value='${'$'}FAILED_COUNT']"
+    """.trimIndent()
+        }
+
+        script {
+            name = "Get skipped tests from Allure Report"
+            executionMode = BuildStep.ExecutionMode.ALWAYS
+            scriptContent = """
+        SKIPPED_COUNT=${'$'}(awk '/launch_status_skipped/ {print $2}' allure-report/export/prometheusData.txt)
+        echo "##teamcity[setParameter name='env.SKIPPED_TESTS' value='${'$'}SKIPPED_COUNT']"
+    """.trimIndent()
+        }
+
+        script {
+            name = "Get durations of tests from Allure Report"
+            executionMode = BuildStep.ExecutionMode.ALWAYS
+            scriptContent = """
+        DURATION=${'$'}(awk '/launch_time_duration/ {print $2}' allure-report/export/prometheusData.txt)
+        echo "##teamcity[setParameter name='env.DURATION' value='${'$'}DURATION']"
     """.trimIndent()
         }
 
@@ -107,6 +125,18 @@ object Build : BuildType({
         {
         "name": "Number of Passed Tests",
         "value": "%env.PASSED_TESTS%"
+        },
+        {
+        "name": "Number of Failed Tests",
+        "value": "%env.FAILED_TESTS%"
+        },
+        {
+        "name": "Number of Failed Tests",
+        "value": "%env.SKIPPED_TESTS%"
+        },
+        {
+        "name": "Number of Failed Tests",
+        "value": "%env.DURATION%"
         }
       ]
     }
