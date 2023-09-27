@@ -65,7 +65,7 @@ object Build : BuildType({
             val AGENT_NAME = "%teamcity.agent.name%"
             val CPU_COUNT = "%teamcity.agent.hardware.cpuCount%"
             val START_DATE_BUILD = "%teamcity.build.startDate%"
-            val FINISH_DATE_BUILD = "%teamcity.build.finishDate%"
+//            val FINISH_DATE_BUILD = "%teamcity.build.finishDate%"
 
             // About tests
 
@@ -119,10 +119,6 @@ object Build : BuildType({
         {
           "name": "Start date build",
           "value": "$START_DATE_BUILD"
-        },
-        {
-          "name": "Finish date build",
-          "value": "$FINISH_DATE_BUILD"
         }
       ]
     },
