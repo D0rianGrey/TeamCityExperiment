@@ -48,13 +48,24 @@ object Build : BuildType({
 //        }
 
         script {
+            name = "Fetch Number of Passed Tests"
+            val PASSED_TESTS = """
+                curl -u "eugene:eugene" "http://localhost:8111/app/rest/builds/id:%teamcity.build.id%/statistics/statisticValue:PassedTest")
+                """.trimIndent()
+            executionMode = BuildStep.ExecutionMode.ALWAYS
+            scriptContent = """
+        echo "##teamcity[setParameter name='env.PASSED_TESTS' value='$PASSED_TESTS']"
+    """.trimIndent()
+        }
+
+        script {
             name = "Send Adaptive Card to Microsoft Teams as Allure report"
             executionMode = BuildStep.ExecutionMode.ALWAYS
+            val PASSED_TESTS = "%env.PASSED_TESTS%"
 
             //Basic info
             val ALLURE_REPORT_URL =
                 "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
-
             // About build
             val BRANCH_NAME = "%teamcity.build.branch%"
             val BUILD_ID = "%teamcity.build.id%"
@@ -113,12 +124,8 @@ object Build : BuildType({
       "title": "**Information about tests:**",
       "facts": [
         {
-          "name": "Fact 1",
-          "value": "Value 1"
-        },
-        {
-          "name": "Fact 2",
-          "value": "Value 2"
+        "name": "Number of Passed Tests",
+        "value": "$PASSED_TESTS"
         }
       ]
     }
