@@ -39,7 +39,7 @@ object Build : BuildType({
             name = "Parse JSON to Get Passed Test Count and Set TeamCity Parameter"
             scriptContent = """
         PASSED_COUNT=$(jq '.counters.passed' allure-report/export/prometheusData.txt)
-        echo "##teamcity[setParameter name='env.PASSED_TESTS' value='PASSED_COUNT']"
+        echo "##teamcity[setParameter name='env.PASSED_TESTS' value='$PASSED_COUNT']"
     """.trimIndent()
         }
 
