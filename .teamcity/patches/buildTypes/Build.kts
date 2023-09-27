@@ -27,6 +27,9 @@ changeBuildType(RelativeId("Build")) {
 
     params {
         add {
+            text("env.SKIPPED_TESTS", "", allowEmpty = true)
+        }
+        add {
             text("env.DURATION", "", allowEmpty = true)
         }
         add {
