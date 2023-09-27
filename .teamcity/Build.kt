@@ -24,6 +24,7 @@ object Build : BuildType({
             "allure_report_url",
             "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
         )
+        param("prometheusData", "allure-report/export/prometheusData.txt")
     }
 
 
@@ -61,76 +62,75 @@ object Build : BuildType({
         script {
             name = "Send Adaptive Card to Microsoft Teams as Allure report"
             executionMode = BuildStep.ExecutionMode.ALWAYS
-//            val PAYLOAD = """
-//                {
-//  "@context": "http://schema.org/extensions",
-//  "@type": "MessageCard",
-//  "themeColor": "0076D7",
-//  "title": "Allure Report",
-//  "text": "This is a simplified report after the job is completed",
-//  "sections": [
-//    {
-//      "startGroup": true,
-//      "title": "**Information about build:**",
-//      "facts": [
-//        {
-//          "name": "Branch name",
-//          "value": "%teamcity.build.branch%"
-//        },
-//        {
-//          "name": "Build Number",
-//          "value": "%build.number%"
-//        },
-//        {
-//          "name": "Agent name",
-//          "value": "%teamcity.agent.name%"
-//        },
-//        {
-//        "name": "Triggered by user name",
-//        "value": "%teamcity.build.triggeredBy.username%"
-//        }
-//      ]
-//    },
-//    {
-//      "startGroup": true,
-//      "title": "**Information about tests:**",
-//      "facts": [
-//        {
-//        "name": "Passed",
-//        "value": "%env.PASSED_TESTS%"
-//        },
-//        {
-//        "name": "Failed",
-//        "value": "%env.FAILED_TESTS%"
-//        },
-//        {
-//        "name": "Skipped",
-//        "value": "%env.SKIPPED_TESTS%"
-//        },
-//        {
-//        "name": "Duration",
-//        "value": "%env.DURATION%"
-//        }
-//      ]
-//    }
-//  ],
-//  "potentialAction": [
-//    {
-//      "@type": "OpenUri",
-//      "name": "Open detailed report",
-//      "targets": [
-//        {
-//          "os": "default",
-//          "uri": "%allure_report_url%"
-//        }
-//      ]
-//    }
-//  ]
-//}
-//            """.trimIndent()
+            val payload = """
+                {
+  "@context": "http://schema.org/extensions",
+  "@type": "MessageCard",
+  "themeColor": "0076D7",
+  "title": "Allure Report",
+  "text": "This is a simplified report after the job is completed",
+  "sections": [
+    {
+      "startGroup": true,
+      "title": "**Information about build:**",
+      "facts": [
+        {
+          "name": "Branch name",
+          "value": "%teamcity.build.branch%"
+        },
+        {
+          "name": "Build Number",
+          "value": "%build.number%"
+        },
+        {
+          "name": "Agent name",
+          "value": "%teamcity.agent.name%"
+        },
+        {
+        "name": "Triggered by user name",
+        "value": "%teamcity.build.triggeredBy.username%"
+        }
+      ]
+    },
+    {
+      "startGroup": true,
+      "title": "**Information about tests:**",
+      "facts": [
+        {
+        "name": "Passed",
+        "value": "%env.PASSED_TESTS%"
+        },
+        {
+        "name": "Failed",
+        "value": "%env.FAILED_TESTS%"
+        },
+        {
+        "name": "Skipped",
+        "value": "%env.SKIPPED_TESTS%"
+        },
+        {
+        "name": "Duration",
+        "value": "%env.DURATION%"
+        }
+      ]
+    }
+  ],
+  "potentialAction": [
+    {
+      "@type": "OpenUri",
+      "name": "Open detailed report",
+      "targets": [
+        {
+          "os": "default",
+          "uri": "%allure_report_url%"
+        }
+      ]
+    }
+  ]
+}
+            """.trimIndent()
             scriptContent = """
-        PAYLOAD=${'$'}(.teamcity/teamsCard/payload.json)
-        curl -H 'Content-Type: application/json' -d '${'$'}PAYLOAD' %webhook_url%
+        curl -H 'Content-Type: application/json' -d '$payload' %webhook_url%
     """.trimIndent()
         }
     }
