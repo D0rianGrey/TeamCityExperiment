@@ -5,7 +5,6 @@ import jetbrains.buildServer.configs.kotlin.PublishMode
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.buildSteps.script
-import jetbrains.buildServer.configs.kotlin.failureConditions.BuildFailureOnMetric
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 // Setting for Build
@@ -35,13 +34,13 @@ object Build : BuildType({
             goals = "allure:report"
         }
 
-//        script {
-//            name = "Parse JSON to Get Passed Test Count and Set TeamCity Parameter"
-//            scriptContent = """
-//        PASSED_COUNT=$(jq '.counters.passed' allure-report/export/prometheusData.txt)
-//        echo "##teamcity[setParameter name='env.PASSED_TESTS' value='$PASSED_COUNT']"
-//    """.trimIndent()
-//        }
+        script {
+            name = "Parse JSON to Get Passed Test Count and Set TeamCity Parameter"
+            scriptContent = """
+        PASSED_COUNT=$(jq '.counters.passed' allure-report/export/prometheusData.txt)
+        echo "##teamcity[setParameter name='env.PASSED_TESTS' value='$PASSED_COUNT']"
+    """.trimIndent()
+        }
 
 
         script {
