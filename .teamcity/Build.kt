@@ -99,7 +99,7 @@ object Build : BuildType({
       "facts": [
         {
         "name": "Number of Passed Tests",
-        "value": "%env.VARIABLE_NAME%"
+        "value": "%env.PASSED_TESTS%"
         }
       ]
     }
