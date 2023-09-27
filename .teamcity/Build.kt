@@ -48,7 +48,7 @@ object Build : BuildType({
 //        }
 
         script {
-            name = "Send Adaptive Card to Microsoft Teams"
+            name = "Send Adaptive Card to Microsoft Teams as Allure report"
             executionMode = BuildStep.ExecutionMode.ALWAYS
             val ALLURE_REPORT_URL =
                 "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
