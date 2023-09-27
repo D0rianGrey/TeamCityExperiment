@@ -60,7 +60,6 @@ object Build : BuildType({
             val BRANCH_NAME = "%teamcity.build.branch%"
             val BUILD_ID = "%teamcity.build.id%"
             val AGENT_NAME = "%teamcity.agent.name%"
-            val TRIGGERED_BY = "%teamcity.build.triggeredBy%"
             val TRIGGERED_BY_USER_NAME = "%teamcity.build.triggeredBy.username%"
 
             // About tests
@@ -91,10 +90,6 @@ object Build : BuildType({
         {
           "name": "Agent name",
           "value": "$AGENT_NAME"
-        },
-        {
-        "name": "Triggered by",
-        "value": "$TRIGGERED_BY"
         },
         {
         "name": "Triggered by user name",
