@@ -17,6 +17,7 @@ object Build : BuildType({
     params {
         param("env", "cloud_chrome")
         param("url", "https://www.google.com.ua/")
+        param("test", "1")
     }
 
     vcs {
