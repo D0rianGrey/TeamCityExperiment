@@ -50,7 +50,7 @@ object Build : BuildType({
         script {
             name = "Fetch Number of Passed Tests"
             val PASSED_TESTS = """
-                curl -u "eugene:eugene" "http://localhost:8111/app/rest/builds/id:%teamcity.build.id%/statistics/statisticValue:PassedTest")
+                curl -u 'eugene:eugene' 'http://localhost:8111/app/rest/builds/id:%teamcity.build.id%/statistics/statisticValue:PassedTest'
                 """.trimIndent()
             executionMode = BuildStep.ExecutionMode.ALWAYS
             scriptContent = """
