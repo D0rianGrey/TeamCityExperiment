@@ -21,17 +21,17 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         working-directory: Playwright
-      #      - uses: actions/upload-artifact@v3
-      #        if: always()
-      #        with:
-      #          name: playwright-report
-      #          path: playwright-report/
-      #          retention-days: 30
-      - name: Generate Allure Report
-        run: npx allure generate allure-results --clean
-        working-directory: Playwright
-      - name: Publish Allure Report
-        uses: gh-pages@v3
+      - uses: actions/upload-artifact@v3
+        if: always()
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: Playwright/allure-report
+          name: playwright-report
+          path: Playwright/playwright-report/
+          retention-days: 30
+#      - name: Generate Allure Report
+#        run: npx allure generate allure-results --clean
+#        working-directory: Playwright
+#      - name: Publish Allure Report
+#        uses: gh-pages@v3
+#        with:
+#          repo_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: Playwright/allure-report
