@@ -43,6 +43,6 @@ build/
 /postgres_data/
 /mysql_data/
 /allure-results/
-/.fastRequest/
 /.allure/
 /allure-report/
+/Playwright/node_modules/
