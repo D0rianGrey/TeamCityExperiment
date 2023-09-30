@@ -21,11 +21,14 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         working-directory: Playwright
+      - name: Generate Allure Report
+        run: npx allure generate allure-results --clean
+        working-directory: Playwright
       - uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: playwright-report
-          path: Playwright/playwright-report/
+          name: allure-report
+          path: Playwright/allure-report/
           retention-days: 30
 #      - name: Generate Allure Report
 #        run: npx allure generate allure-results --clean
