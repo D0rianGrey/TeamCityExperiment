@@ -34,13 +34,12 @@ jobs:
         run: npx allure generate allure-results --clean
         working-directory: Playwright
 
-      - name: Deploy report to Github Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v2
+      - name: Publish Allure report
+        uses: simple-icons/gh-pages@v2
         with:
-          PERSONAL_TOKEN: ${{ secrets.ALLURE }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: Playwright/allure-report/index.html
+          BRANCH: gh-pages  # The branch the action should deploy to
+          FOLDER: allure-report  # The folder the action should deploy
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 #      - name: Deploy to GitHub Pages
 #        uses: peaceiris/actions-gh-pages@v3
