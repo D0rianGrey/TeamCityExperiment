@@ -32,6 +32,11 @@ jobs:
       - name: Generate Allure Report
         run: npx allure generate allure-results --clean
         working-directory: Playwright
+      - name: Publish Allure Report
+        uses: gh-pages@v3
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: Playwright/allure-report
 #      - uses: actions/upload-artifact@v3
 #        if: always()
 #        with:
