@@ -38,7 +38,7 @@ jobs:
         if: always()
         uses: peaceiris/actions-gh-pages@v2
         with:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_TOKEN: ${{ secrets.ALLURE }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: Playwright/allure-report
 
