@@ -40,7 +40,7 @@ jobs:
         with:
           PERSONAL_TOKEN: ${{ secrets.ALLURE }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: Playwright/allure-report
+          PUBLISH_DIR: Playwright/allure-report/index.html
 
 #      - name: Deploy to GitHub Pages
 #        uses: peaceiris/actions-gh-pages@v3
