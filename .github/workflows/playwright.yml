@@ -20,9 +20,18 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npx playwright test
-      - uses: actions/upload-artifact@v3
-        if: always()
+        working-directory: Playwright
+      #      - uses: actions/upload-artifact@v3
+      #        if: always()
+      #        with:
+      #          name: playwright-report
+      #          path: playwright-report/
+      #          retention-days: 30
+      - name: Generate Allure Report
+        run: npx allure generate allure-results --clean
+        working-directory: Playwright
+      - name: Publish Allure Report
+        uses: gh-pages@v3
         with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: Playwright/allure-report

@@ -46,3 +46,5 @@ build/
 /.allure/
 /allure-report/
 /Playwright/node_modules/
+/Playwright/allure-report/
+/Playwright/allure-results/
