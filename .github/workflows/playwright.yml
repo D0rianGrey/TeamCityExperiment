@@ -37,7 +37,7 @@ jobs:
       - name: Publish Allure report
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.ALLURE }}
           publish_dir: Playwright/allure-report
 
 #      - name: Deploy to GitHub Pages
