@@ -9,7 +9,7 @@ on:
 jobs:
   print:
     - name: Print Hello World
-      run: echo "Hello World"
+      run: echo 'Hello World'
 
   test:
     timeout-minutes: 60
