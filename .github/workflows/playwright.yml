@@ -5,7 +5,12 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
+
 jobs:
+  print:
+    - name: Print Hello World
+      run: echo "Hello World"
+
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
@@ -39,9 +44,3 @@ jobs:
         with:
           github_token: ${{ secrets.ALLURE }}
           publish_dir: Playwright/allure-report
-
-#      - name: Deploy to GitHub Pages
-#        uses: peaceiris/actions-gh-pages@v3
-#        with:
-#          github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
-#          publish_dir: Playwright/allure-report
