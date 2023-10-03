@@ -15,6 +15,5 @@ public class GoogleTests extends BaseTest {
         System.out.println("Env :: " + env);
 
         open(url);
-
     }
 }

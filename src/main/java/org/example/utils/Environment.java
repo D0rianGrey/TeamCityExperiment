@@ -3,7 +3,9 @@ package org.example.utils;
 public enum Environment {
     LOCAL_CHROME,
     LOCAL_FIREFOX,
-    CLOUD_CHROME;
+    CLOUD_CHROME,
+    SELENOID_CHROME,
+    SELENOID_FIREFOX;
 
     public static Environment getEnumFromString(String stringValue) {
         try {
