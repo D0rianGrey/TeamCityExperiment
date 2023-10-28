@@ -39,7 +39,14 @@ public class PropertiesConfigurator {
             String valueFromFile = propertiesFromFile.getProperty(key);
 
             // Decide the final value
-            String finalValue = (valueFromSystem != null && valueFromFile != null) ? valueFromSystem : (valueFromFile != null ? valueFromFile : "default_value");
+            String finalValue;
+            if (valueFromSystem != null && valueFromFile != null) {
+                finalValue = valueFromSystem;
+            } else if (valueFromFile != null) {
+                finalValue = valueFromFile;
+            } else {
+                finalValue = "default_value";
+            }
 
             // Store the final value
             finalProperties.setProperty(key, finalValue);
