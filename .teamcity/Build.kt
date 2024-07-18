@@ -21,7 +21,7 @@ object Build : BuildType({
         )
         param(
             "allure_report_url",
-            "http://localhost:8111/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
+            "https://doriangrey.teamcity.com/buildConfiguration/TeamCityExperiment_Build/%teamcity.build.id%?buildTab=report_project1_Test_Results"
         )
         param("prometheusData", "allure-report/export/prometheusData.txt")
     }
