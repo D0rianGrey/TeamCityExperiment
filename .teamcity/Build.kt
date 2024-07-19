@@ -43,23 +43,23 @@ object Build : BuildType({
             goals = "allure:report"
         }
 
-        applyAllureReportScripts();
+//        applyAllureReportScripts();
     }
-
-    artifactRules = """
-        +:allure-report => allure-report
-        +:allure-report/history => allure-report/history
-    """
-
-    dependencies {
-        artifacts(Build) {
-            id = "ARTIFACT_DEPENDENCY"
-            buildRule = lastSuccessful()
-            artifactRules = """
-                allure-report/history/* => allure-results/history
-            """
-        }
-    }
+//
+//    artifactRules = """
+//        +:allure-report => allure-report
+//        +:allure-report/history => allure-report/history
+//    """
+//
+//    dependencies {
+//        artifacts(Build) {
+//            id = "ARTIFACT_DEPENDENCY"
+//            buildRule = lastSuccessful()
+//            artifactRules = """
+//                allure-report/history/* => allure-results/history
+//            """
+//        }
+//    }
 
     triggers {
         vcs { }
