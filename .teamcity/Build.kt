@@ -1,10 +1,10 @@
-import scripts.AllureReportScripts.applyAllureReportScripts
 import jetbrains.buildServer.configs.kotlin.BuildType
 import jetbrains.buildServer.configs.kotlin.DslContext
 import jetbrains.buildServer.configs.kotlin.PublishMode
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
+import scripts.AllureReportScripts.applyAllureReportScripts
 
 // Setting for Build
 object Build : BuildType({
@@ -43,23 +43,23 @@ object Build : BuildType({
             goals = "allure:report"
         }
 
-//        applyAllureReportScripts();
+        applyAllureReportScripts();
     }
-//
-//    artifactRules = """
-//        +:allure-report => allure-report
-//        +:allure-report/history => allure-report/history
-//    """
-//
-//    dependencies {
-//        artifacts(Build) {
-//            id = "ARTIFACT_DEPENDENCY"
-//            buildRule = lastSuccessful()
-//            artifactRules = """
-//                allure-report/history/* => allure-results/history
-//            """
-//        }
-//    }
+
+    artifactRules = """
+        +:allure-report => allure-report
+        +:allure-report/history => allure-report/history
+    """
+
+    dependencies {
+        artifacts(Build) {
+            id = "ARTIFACT_DEPENDENCY"
+            buildRule = lastFinished()
+            artifactRules = """
+                allure-report/history/* => allure-results/history
+            """
+        }
+    }
 
     triggers {
         vcs { }
